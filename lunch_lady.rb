@@ -91,39 +91,41 @@ def reset_order
   @user_reset = gets.strip.downcase
 end
 
-# def wallet_max
+# def wallet
 #   puts "Please enter the amount you have to spend(i.e. 10.50): "
 #   @max = gets.to_f.round(2)
 #   puts "You have $#{@max} to spend."
 # end
-#
+
 # def check_wallet
 #   if @sum > @max
-#     puts "Sorry, you do not have enough money for this order."
+#     puts "Sorry, you do not have enough money for this item."
+#     return false
 #   else
 #     puts "The item has been added to your order."
+#     return true
 #   end
 # end
 
-def lunch_lady
-  welcome
-  # wallet_max
-  main_menu
+def take_order(menu)
+  menu
   user_order
   total
+end
+
+def lunch_lady
+  welcome
+  # wallet
+  take_order(main_menu)
   # while something is true, run this code
   var = 1
   while var <= 2
     var += 1
-    side_menu
-    user_order
-    total
+    take_order(side_menu)
   end
   add_on
   while @user_add == "y"
-    side_menu
-    user_order
-    total
+    take_order(side_menu)
     add_on
   end
 end
